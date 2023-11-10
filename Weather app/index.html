@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="style.css">
+    <title>Weather Application</title>
+
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="enter city name">
+            <button type="button">Search Cities</button>
+        </div>
+        <div class="weather">
+            <img src="images/partly_cloudy.png" >
+            <h1 class="Temp"></h1>
+            <h1 class="city-name">Welcome! Please begin your search!</h1>
+            <h2 class="weather-desc"></h2>
+                <div class="weather-windspeed">
+                </div>
+        </div>
+    </div>
+    <script>
+        const apiKey = "8f021326aeff3060b6bcc82a95bc1d42";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+        const searchBox = document.querySelector(".search input");
+        const searchButton = document.querySelector(".search button");
+        const weatherIcon = document.querySelector(".weather img");
+
+            async function checkWeather(city){
+                const response = await fetch(apiUrl+city+'&appid=8f021326aeff3060b6bcc82a95bc1d42');
+                var data = await response.json();
+
+                console.log(data);
+
+                document.querySelector(".city-name").innerHTML=data.name;
+                document.querySelector(".Temp").innerHTML=data.main.temp + "°c";
+                document.querySelector(".weather-desc").innerHTML=data.weather[0].description; 
+                
+                if(data.weather[0].description=="clear sky"){
+                weatherIcon.src="images/sunny_s_cloudy.png";
+            }
+                else if(data.weather[0].description=="overcast clouds" || data.weather[0].description=="broken clouds"){
+                weatherIcon.src="images/download.png";
+            }else{
+                weatherIcon.src="images/download.png"; 
+            }
+            }
+            searchButton.addEventListener("click",()=>{
+                    checkWeather(searchBox.value);    
+                })      
+    </script>    
+</body>
+</html>

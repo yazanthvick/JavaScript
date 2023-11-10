@@ -1,0 +1,26 @@
+*{
+  margin:0;
+  padding:0;
+  font-family: 'Poppins', sans-serif;  
+}
+body{
+  background: #222
+}
+.card{
+      position:relative;
+      width: 300px;
+      height: 250px;
+      background: linear-gradient(135deg,hsl(236, 46%, 55%),#3e82a6);
+      color: #fff;
+      margin: 100px auto 0;
+      border-radius:20px;
+      padding: 40px 35px;
+      text-align:center;
+}
+
+
+button{
+  position: absolute;
+  top:250px;
+  left:150px;
+}
